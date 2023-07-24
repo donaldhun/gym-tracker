@@ -28,26 +28,56 @@ export default function TabOneScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      
+      <Text style={[styles.title, {marginTop:40}]}>WHAT'S UP,</Text>
+      <Text style={[styles.title, {marginTop:5, fontSize:50}]}>DONALD!</Text>
 
-      <View style={{ flexDirection: 'row', backgroundColor: theme.colors.background, justifyContent:'space-between', alignItems:'center'}}>
-        <View style={{backgroundColor: theme.colors.background}}>
-          <Text style={[styles.title, { marginLeft: 0 }]}>7/23/23</Text>
-          <Text style={[styles.title, { fontSize: 40 }]}>Sunday</Text>
+      <View style={styles.mainButton}>
+        <Text style={{fontSize:24, fontWeight:'600'}}>START LIFTING</Text>
+      </View>
+
+      <Text style={{marginTop: 40,fontSize:16, fontWeight:'400'}}>daily affirmation</Text>
+      <Text style={{marginTop: 20,fontSize:12}}>You are sal. You can do this job</Text>
+      <Text style={{marginTop: 0,fontSize:12}}>You're not a bartender anymore. You're Sal.</Text>
+
+      <View style={styles.separator} lightColor="gray" darkColor="rgba(255,255,255,0.1)" />
+
+      <Text style={{marginTop: -10,fontSize:16, fontWeight:'bold'}}>LAST SESSION</Text>
+      <Text style={{marginTop: 0,fontSize:16, marginBottom:20}}>7/23/2023</Text>
+
+      <ScrollView style={{flex:1, padding: 20}}>
+        <Text style={{marginTop: 0, marginLeft:4,fontSize:20, fontWeight:'bold'}}>Bench</Text>
+        <View style={{ width: 260, minHeight:80, borderRadius:10, padding:10}}>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
         </View>
-        <Icon name="user-circle" color="black" size={40}/>
-      </View>
 
-  
-      <View style={[styles.mainButton, {backgroundColor: theme.colors.primary}]}>
-        <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 25 }}>Start Workout</Text>
-      </View>
+        <Text style={{marginTop: 22, marginLeft:4,fontSize:20, fontWeight:'bold'}}>Shoulder Press</Text>
+        <View style={{ width: 260, minHeight:80, borderRadius:10, padding:10}}>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+        </View>
 
-      <Text style={{ marginTop: 90, fontWeight: '500', fontSize: 28 }}>Recent Workouts</Text>
+        <Text style={{marginTop: 22, marginLeft:4,fontSize:20, fontWeight:'bold'}}>Squat</Text>
+        <View style={{ width: 260, minHeight:80, borderRadius:10, padding:10}}>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+        </View>
 
-      <Text style={{fontFamily:'Virgil'}}>xcxxzcvxcvxcvxcvbashi</Text>
+        <Text style={{marginTop: 22, marginLeft:4,fontSize:20, fontWeight:'bold'}}>Lateral Raise</Text>
+        <View style={{ width: 260, minHeight:80, borderRadius:10, padding:10}}>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+          <Text style={{fontSize:16}}>520 lb x 8 reps</Text>
+        </View>
+
+      </ScrollView>
 
 
-      {/* ... */}
+
     </SafeAreaView>
   );
 }
@@ -57,15 +87,17 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: '5%',
     marginTop: 60,
+    alignItems:'center'
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
   },
   separator: {
+    color:'black',
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: '90%',
   },
   mainButton: {
     marginTop: 30,
