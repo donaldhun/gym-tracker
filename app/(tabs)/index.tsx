@@ -37,7 +37,7 @@ export default function TabOneScreen() {
           <Text style={[styles.title, sharedStyles, { marginTop: 12 }]}>WHAT'S UP,</Text>
           <View style={{flexDirection:'row', justifyContent:'space-between',backgroundColor:theme.colors.background, alignItems:'center'}}>
             <Text style={[styles.title, sharedStyles, { fontSize: 50 }]}>DONALD!</Text>
-            <Icon name="user-circle" size={45}></Icon>
+            <Icon name="user-circle" color={theme.colors.text} size={45}/>
           </View>
         </View>
 
@@ -49,7 +49,9 @@ export default function TabOneScreen() {
         <Text style={[sharedStyles, { color: theme.colors.text, fontSize: 28, fontWeight: '600' }]}>START LIFTING</Text>
       </TouchableOpacity>
 
-      <Text style={[sharedStyles, { marginTop: 40, fontSize: 16, fontWeight: '400' }]}>daily affirmation</Text>
+      <View style={[styles.separator]} lightColor="gray" darkColor="rgba(255,255,255,0.1)" />
+
+      <Text style={[sharedStyles, { marginTop: 0, fontSize: 24, fontWeight: '400' }]}>daily affirmation</Text>
       <Text style={[sharedStyles, { marginTop: 20, fontSize: 12 }]}>You are sal. You can do this job</Text>
       <Text style={[sharedStyles, { marginTop: 0, fontSize: 12 }]}>You're not a bartender anymore. You're Sal.</Text>
 
@@ -58,30 +60,6 @@ export default function TabOneScreen() {
       <Text style={[sharedStyles, { marginTop: -10, fontSize: 16, fontWeight: 'bold' }]}>LAST SESSION</Text>
       <Text style={[sharedStyles, { marginTop: 0, fontSize: 16, marginBottom: 20 }]}>7/23/2023</Text>
 
-      <ScrollView style={{ flex: 1, padding: 10, paddingHorizontal:30 }}>
-        <Text style={[sharedStyles, { marginTop: 0, marginLeft: 4, fontSize: 20, fontWeight: 'bold' }]}>Bench</Text>
-        <View style={[styles.exerciseContainer, {marginBottom: 15}]}>
-          <Text style={[sharedStyles, { fontSize: 16 }]}>520 lb x 8 reps</Text>
-          <Text style={[sharedStyles, { fontSize: 16 }]}>520 lb x 8 reps</Text>
-          <Text style={[sharedStyles, { fontSize: 16 }]}>520 lb x 8 reps</Text>
-        </View>
-        <Text style={[sharedStyles, { marginTop: 0, marginLeft: 4, fontSize: 20, fontWeight: 'bold' }]}>Shoulder Press</Text>
-        <View style={[styles.exerciseContainer, {marginBottom: 15}]}>
-          <Text style={[sharedStyles, { fontSize: 16 }]}>520 lb x 8 reps</Text>
-          <Text style={[sharedStyles, { fontSize: 16 }]}>520 lb x 8 reps</Text>
-          <Text style={[sharedStyles, { fontSize: 16 }]}>520 lb x 8 reps</Text>
-        </View>
-        <Text style={[sharedStyles, { marginTop: 0, marginLeft: 4, fontSize: 20, fontWeight: 'bold' }]}>Squats</Text>
-        <View style={[styles.exerciseContainer, {marginBottom: 15}]}>
-          <Text style={[sharedStyles, { fontSize: 16 }]}>520 lb x 8 reps</Text>
-          <Text style={[sharedStyles, { fontSize: 16 }]}>520 lb x 8 reps</Text>
-          <Text style={[sharedStyles, { fontSize: 16 }]}>520 lb x 8 reps</Text>
-        </View>
-
-        
-
-        {/* Other exercises here... */}
-      </ScrollView>
     </SafeAreaView>
   );
 }

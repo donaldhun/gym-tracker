@@ -28,21 +28,27 @@ export default function workoutPage() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <Text style={[sharedStyles, styles.title]}>Workout</Text>
-      <Text style={[sharedStyles, styles.title]}>00:55:47</Text>
+      <Text style={[sharedStyles, styles.title, {fontSize:24}]}>Workout</Text>
+      <Text style={[sharedStyles, styles.title, {fontSize:15}]}>00:55:47</Text>
 
-      <View style={{padding:12,width:'100%',height:'100%'}}>
+      <View style={{padding:12,width:'100%',height:'100%', backgroundColor:theme.colors.background}}>
 
 
-        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+        <View style={{flexDirection:'row', justifyContent:'space-between',}}>
           <View style={{flexDirection:'row',}}>
-            <Icon name="edit" size={25}/>
+            <Icon name="edit" color={theme.colors.text} size={25}/>
             <Text style={styles.WorkoutTitle}>Dumbell Bench Press</Text>
           </View>
-        <Icon name="trash" size={25}/>
-        <View></View>
-
+          <Icon name="trash" color={theme.colors.text} size={25}/>
         </View>
+
+        <View style={{width:'100%', minHeight:120, backgroundColor:theme.colors.card, borderRadius:10}}>
+          {/*  */}
+        </View>
+        <View style={{width:'100%', alignItems:'flex-end'}}>
+          <Icon name='plus' color={theme.colors.text} size={25} />
+        </View>
+
       </View>
       
 
@@ -79,5 +85,6 @@ const styles = StyleSheet.create({
   WorkoutTitle: {
     fontFamily: 'Virgil',
     fontSize:22,
+    marginLeft:5,
   },
 });
