@@ -3,6 +3,9 @@ import { SafeAreaView } from 'react-native';
 import { DarkTheme, DefaultTheme, ThemeProvider, useTheme } from '@react-navigation/native';
 import { View, Text, Modal, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { ScrollView } from 'react-native-gesture-handler';
+
+import SetDataRow from '../components/setDataRow';
 
 interface WorkoutModalProps {
   visible: boolean;
@@ -27,8 +30,25 @@ const sharedStyles = {
 
 export default function WorkoutModal({ visible, onClose, onSubmit }: WorkoutModalProps) {
   const theme = useTheme(); // Get the current theme from ThemeProvider
-  const [sets, setSets] = useState('');
   const [title, setTitle] = useState('');
+
+  const [sets, setSets] = useState('');
+  const [fail, setFail] = useState(false);
+  const [weight, setWeight] = useState(0);
+  const [repCount, setRepCount] = useState(0);
+
+  const handlePressFail = () => {
+    setFail(!fail);
+  };
+
+  const handleChangeWeight = (text) => {
+    setWeight(parseInt(text, 10));
+  };
+
+  const handleChangeRepCount = (text) => {
+    setRepCount(parseInt(text, 10));
+  };
+  
 
   const handleConfirm = () => {
     // Validate the inputs here if needed
@@ -43,13 +63,18 @@ export default function WorkoutModal({ visible, onClose, onSubmit }: WorkoutModa
   return (
     <Modal visible={visible} animationType="slide" transparent>
       <SafeAreaView style={styles.modalContainer}>
-        <View style={[styles.modalContent, { backgroundColor: theme.colors.background, alignContent: 'center' }]}>
-          {/* <View style={{width:'100%', height:50, backgroundColor:'green'}}></View> */}
-          <View style={{ flexDirection: 'row', backgroundColor: theme.colors.card, alignItems: 'center', width: '100%', padding: 15, paddingHorizontal: 25, borderRadius: 30, height: 60 }}>
 
+
+        <View style={[styles.modalContent, { backgroundColor: theme.colors.background, alignItems: 'center', justifyContent: 'center' }]}>
+
+          <TouchableOpacity style={{ width: '80%', borderRadius: 30, height: 50, backgroundColor: 'rgb(52, 191, 49)', alignItems: 'center', justifyContent: 'flex-end', paddingVertical: 10 }} onPress={handleConfirm}>
+            <Text style={[sharedStyles, { color: 'white', fontSize: 24, }]}>Done</Text>
+          </TouchableOpacity>
+
+          <View style={{ flexDirection: 'row', backgroundColor: theme.colors.card, alignItems: 'center', width: '100%', padding: 15, paddingHorizontal: 25, borderRadius: 30, height: 60, marginTop: 45 }}>
             <TextInput
               placeholder="Exercise Title"
-              placeholderTextColor='rgb(130, 130, 130)'
+              placeholderTextColor='rgb(189, 189, 189)'
               style={[sharedStyles, styles.title, { color: theme.colors.text, fontSize: 24 }]}
               multiline={false} // Add this line to enable multiline input
               onChangeText={setTitle} // Use setTitle instead of directly setting the text
@@ -62,49 +87,58 @@ export default function WorkoutModal({ visible, onClose, onSubmit }: WorkoutModa
           </View>
 
           <View style={{ marginTop: 60, flex: 1, alignItems: 'center', width: '100%' }}>
-            <Text style={[sharedStyles, { color: theme.colors.text, fontSize: 25 }]}>Sets</Text>
-
-            {/* Data */}
-            <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent:'center', marginTop: 30 }}>
-
-              {/* WEIGHT INPUT */}
-              <View style={{ backgroundColor: theme.colors.card, height: 55, width: 55, borderRadius: 20, justifyContent: 'center', alignItems: 'center' }}>
-                <TextInput
-                  placeholder="25"
-                  placeholderTextColor='rgb(130, 130, 130)'
-                  style={[sharedStyles, styles.title, { color: theme.colors.text, fontSize: 24, flex:1, }]}
-                  maxLength={60}
-                />
-              </View>
-
-              <Text style={[sharedStyles, { color: theme.colors.text, fontSize: 22 }]}> lbs x </Text>
-
-              {/* REPS INPUT */}
-
-              <View style={{ backgroundColor: theme.colors.card, height: 55, width: 55, borderRadius: 20, justifyContent: 'center', alignItems: 'center' }}>
-                <TextInput
-                  placeholder="25"
-                  placeholderTextColor='rgb(130, 130, 130)'
-                  style={[sharedStyles, styles.title, { color: theme.colors.text, fontSize: 24, flex:1, }]}
-                  maxLength={60}
-                />
-              </View>
-
-              <Text style={[sharedStyles, { color: theme.colors.text, fontSize: 22 }]}> reps </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ flex: 1, height: 1, backgroundColor: theme.colors.text, marginRight: 10 }} />
+              <Text style={[sharedStyles, { color: theme.colors.text, fontSize: 25 }]}>Sets</Text>
+              <View style={{ flex: 1, height: 1, backgroundColor: theme.colors.text, marginLeft: 10 }} />
             </View>
 
-            {/* Notes */}
-            <View style={{ marginTop:40, backgroundColor: theme.colors.card, minHeight: 85, width: '90%', borderRadius: 20, paddingHorizontal:25, paddingVertical:15 }}>
-                <TextInput
-                  placeholder="Notes"
-                  placeholderTextColor='rgb(130, 130, 130)'
-                  style={[sharedStyles, styles.title, { color: theme.colors.text, fontSize: 15, flex:1, }]}
-                  maxLength={225}
-                  multiline={true}
-                  // returnKeyType='done'
+            {/* Data */}
+            <ScrollView style={{ width: '100%', height: '100%' }}>
+              <View style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', marginTop: 30 }}>
+
+                {/* SINGLE ROW BEGIN */}
+                <SetDataRow
+                  weight={weight}
+                  repCount={repCount}
+                  fail={fail}
+                  onPressFail={handlePressFail}
+                  onChangeWeight={handleChangeWeight}
+                  onChangeRepCount={handleChangeRepCount}
                 />
+
+                {/* SINGLE ROW END */}
+
+                <SetDataRow
+                  weight={weight}
+                  repCount={repCount}
+                  fail={fail}
+                  onPressFail={handlePressFail}
+                  onChangeWeight={handleChangeWeight}
+                  onChangeRepCount={handleChangeRepCount}
+                />
+
+                <TouchableOpacity style={{ marginTop: 40, backgroundColor: theme.colors.card, height: 45, width: '90%', borderRadius: 20, alignItems: 'center', justifyContent: 'center' }}>
+                  <IconF name="plus" color={theme.colors.text} size={20} />
+                </TouchableOpacity>
+
+
+                {/* Notes */}
+                <View style={{ marginTop: 40, backgroundColor: theme.colors.card, minHeight: 85, width: '90%', borderRadius: 20, paddingHorizontal: 25, paddingVertical: 15 }}>
+                  <TextInput
+                    placeholder="Notes"
+                    placeholderTextColor='rgb(189, 189, 189)'
+                    style={[sharedStyles, styles.title, { color: theme.colors.text, fontSize: 15, flex: 1, }]}
+                    maxLength={225}
+                    multiline={true}
+                  // returnKeyType='done'
+                  />
+                </View>
               </View>
 
+
+
+            </ScrollView>
           </View>
 
 
@@ -113,7 +147,7 @@ export default function WorkoutModal({ visible, onClose, onSubmit }: WorkoutModa
           </TouchableOpacity> */}
         </View>
       </SafeAreaView>
-    </Modal>
+    </Modal >
   );
 }
 
@@ -128,7 +162,7 @@ const styles = StyleSheet.create({
 
     backgroundColor: 'white',
     padding: 20,
-    paddingVertical: 55,
+    paddingVertical: 35,
     borderRadius: 10,
     elevation: 5,
     flex: 1,
